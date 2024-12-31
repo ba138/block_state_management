@@ -6,20 +6,6 @@ class CounterScreen extends StatefulWidget {
 }
 
 class _CounterScreenState extends State<CounterScreen> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  void _decrementCounter() {
-    setState(() {
-      _counter--;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,18 +20,18 @@ class _CounterScreenState extends State<CounterScreen> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              '12',
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ElevatedButton(
-                  onPressed: _decrementCounter,
+                  onPressed: () {},
                   child: Text('-'),
                 ),
                 SizedBox(width: 20),
                 ElevatedButton(
-                  onPressed: _incrementCounter,
+                  onPressed: () {},
                   child: Text('+'),
                 ),
               ],
