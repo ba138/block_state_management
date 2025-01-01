@@ -44,8 +44,8 @@ class _SliderScreenState extends State<SliderScreen> {
             }),
             Container(
               height: 200,
-              color: Colors.red
-                  .withOpacity(0.2), // Use withOpacity instead of withValues.
+              color: Colors.red.withValues(
+                  alpha: 0.2), // Use withOpacity instead of withValues.
             ),
             Slider(
               value: sliderValue,
