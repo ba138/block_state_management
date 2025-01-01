@@ -1,6 +1,7 @@
 import 'package:block_statemanagement/Bloc/counter/counter_bloc.dart';
 // import 'package:block_statemanagement/Ui/counter_screen.dart';
 import 'package:block_statemanagement/Ui/slider_screen.dart';
+import 'package:block_statemanagement/Bloc/switch/switch_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,8 +14,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => CounterBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => CounterBloc()),
+        BlocProvider(create: (_) => SwitchBloc()),
+      ],
       child: MaterialApp(
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

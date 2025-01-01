@@ -1,4 +1,8 @@
+import 'package:block_statemanagement/Bloc/switch/switch_bloc.dart';
+import 'package:block_statemanagement/Bloc/switch/switch_event.dart';
+import 'package:block_statemanagement/Bloc/switch/switch_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SliderScreen extends StatefulWidget {
   const SliderScreen({super.key});
@@ -8,6 +12,8 @@ class SliderScreen extends StatefulWidget {
 }
 
 class _SliderScreenState extends State<SliderScreen> {
+  double sliderValue = 0.2; // Initialize the slider value.
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,22 +23,38 @@ class _SliderScreenState extends State<SliderScreen> {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
-          spacing: 12,
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 20,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text("Notifications"),
-                Switch(value: false, onChanged: (value) {}),
-              ],
-            ),
+            BlocBuilder<SwitchBloc, SwitchState>(builder: (context, state) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text("Notifications"),
+                  Switch(
+                      value: state.isEnabled,
+                      onChanged: (value) {
+                        context
+                            .read<SwitchBloc>()
+                            .add(EnableOrDisableNotification());
+                      }),
+                ],
+              );
+            }),
             Container(
               height: 200,
-              color: Colors.red.withValues(alpha: .2),
+              color: Colors.red
+                  .withOpacity(0.2), // Use withOpacity instead of withValues.
             ),
-            Slider(value: .2, onChanged: (value) {})
+            Slider(
+              value: sliderValue,
+              onChanged: (value) {
+                setState(() {
+                  sliderValue = value; // Update the slider value.
+                });
+              },
+            ),
           ],
         ),
       ),
