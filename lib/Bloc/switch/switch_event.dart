@@ -7,3 +7,5 @@ abstract class SwitchEvent extends Equatable {
 }
 
 class EnableOrDisableNotification extends SwitchEvent {}
+
+class SliderEvent extends SwitchEvent {}
