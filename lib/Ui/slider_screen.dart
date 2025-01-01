@@ -27,21 +27,24 @@ class _SliderScreenState extends State<SliderScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           spacing: 20,
           children: [
-            BlocBuilder<SwitchBloc, SwitchState>(builder: (context, state) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text("Notifications"),
-                  Switch(
-                      value: state.isEnabled,
-                      onChanged: (value) {
-                        context
-                            .read<SwitchBloc>()
-                            .add(EnableOrDisableNotification());
-                      }),
-                ],
-              );
-            }),
+            BlocBuilder<SwitchBloc, SwitchState>(
+                buildWhen: (previous, current) =>
+                    previous.isEnabled != current.isEnabled,
+                builder: (context, state) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Notifications"),
+                      Switch(
+                          value: state.isEnabled,
+                          onChanged: (value) {
+                            context
+                                .read<SwitchBloc>()
+                                .add(EnableOrDisableNotification());
+                          }),
+                    ],
+                  );
+                }),
             BlocBuilder<SwitchBloc, SwitchState>(builder: (context, state) {
               return Container(
                 height: 200,
