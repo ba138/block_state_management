@@ -42,19 +42,24 @@ class _SliderScreenState extends State<SliderScreen> {
                 ],
               );
             }),
-            Container(
-              height: 200,
-              color: Colors.red.withValues(
-                  alpha: 0.2), // Use withOpacity instead of withValues.
-            ),
-            Slider(
-              value: sliderValue,
-              onChanged: (value) {
-                setState(() {
-                  sliderValue = value; // Update the slider value.
-                });
-              },
-            ),
+            BlocBuilder<SwitchBloc, SwitchState>(builder: (context, state) {
+              return Container(
+                height: 200,
+                color: Colors.red.withValues(
+                    alpha: state
+                        .sliderValue), // Use withOpacity instead of withValues.
+              );
+            }),
+            BlocBuilder<SwitchBloc, SwitchState>(builder: (context, state) {
+              return Slider(
+                value: state.sliderValue,
+                onChanged: (value) {
+                  context
+                      .read<SwitchBloc>()
+                      .add(SliderEvent(sliderValue: value));
+                },
+              );
+            })
           ],
         ),
       ),
