@@ -3,5 +3,9 @@ import 'package:block_statemanagement/Bloc/imagePicker/image_picker_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ImagePickerBloc extends Bloc<ImagePickerEvent, ImagePickerState> {
-  ImagePickerBloc() : super(const ImagePickerState());
+  ImagePickerBloc() : super(const ImagePickerState()) {
+    on<CamerCapture>(_pickeImageFromCamera);
+  }
+  void _pickeImageFromCamera(
+      CamerCapture event, Emitter<ImagePickerState> emit) {}
 }
