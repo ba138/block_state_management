@@ -1,4 +1,5 @@
 import 'package:block_statemanagement/Bloc/counter/counter_bloc.dart';
+import 'package:block_statemanagement/Ui/image_screen.dart';
 // import 'package:block_statemanagement/Ui/counter_screen.dart';
 import 'package:block_statemanagement/Ui/slider_screen.dart';
 import 'package:block_statemanagement/Bloc/switch/switch_bloc.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: SliderScreen(),
+        home: ImageScreen(),
       ),
     );
   }
