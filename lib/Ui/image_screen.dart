@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:block_statemanagement/Bloc/imagePicker/image_picker_bloc.dart';
+import 'package:block_statemanagement/Bloc/imagePicker/image_picker_event.dart';
 import 'package:block_statemanagement/Bloc/imagePicker/image_picker_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,8 +24,13 @@ class _ImageScreenState extends State<ImageScreen> {
       body: BlocBuilder<ImagePickerBloc, ImagePickerState>(
           builder: (context, state) {
         if (state.file == null) {
-          return CircleAvatar(
-            child: Icon(Icons.camera),
+          return InkWell(
+            onTap: () {
+              context.read<ImagePickerBloc>().add(CamerCapture());
+            },
+            child: CircleAvatar(
+              child: Icon(Icons.camera),
+            ),
           );
         } else {
           return Image.file(File(state.file!.path));
