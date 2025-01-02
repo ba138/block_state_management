@@ -53,16 +53,19 @@ class _SliderScreenState extends State<SliderScreen> {
                         .sliderValue), // Use withOpacity instead of withValues.
               );
             }),
-            BlocBuilder<SwitchBloc, SwitchState>(builder: (context, state) {
-              return Slider(
-                value: state.sliderValue,
-                onChanged: (value) {
-                  context
-                      .read<SwitchBloc>()
-                      .add(SliderEvent(sliderValue: value));
-                },
-              );
-            })
+            BlocBuilder<SwitchBloc, SwitchState>(
+                buildWhen: (previous, current) =>
+                    previous.sliderValue != current.sliderValue,
+                builder: (context, state) {
+                  return Slider(
+                    value: state.sliderValue,
+                    onChanged: (value) {
+                      context
+                          .read<SwitchBloc>()
+                          .add(SliderEvent(sliderValue: value));
+                    },
+                  );
+                })
           ],
         ),
       ),
