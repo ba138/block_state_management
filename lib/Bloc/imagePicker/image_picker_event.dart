@@ -6,4 +6,6 @@ abstract class ImagePickerEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class PickImage extends ImagePickerEvent {}
+class CamerCapture extends ImagePickerEvent {}
+
+class GalleryImagePicker extends ImagePickerEvent {}
