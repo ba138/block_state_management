@@ -1,4 +1,9 @@
+import 'dart:io';
+
+import 'package:block_statemanagement/Bloc/imagePicker/image_picker_bloc.dart';
+import 'package:block_statemanagement/Bloc/imagePicker/image_picker_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ImageScreen extends StatefulWidget {
   const ImageScreen({super.key});
@@ -15,6 +20,16 @@ class _ImageScreenState extends State<ImageScreen> {
         title: Text("Pick Image"),
         centerTitle: true,
       ),
+      body: BlocBuilder<ImagePickerBloc, ImagePickerState>(
+          builder: (context, state) {
+        if (state.file == null) {
+          return CircleAvatar(
+            child: Icon(Icons.camera),
+          );
+        } else {
+          return Image.file(File(state.file!.path));
+        }
+      }),
     );
   }
 }
