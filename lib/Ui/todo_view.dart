@@ -25,7 +25,12 @@ class TodoView extends StatelessWidget {
                       fontSize: 16,
                     ),
                   ),
-                  trailing: Icon(Icons.delete),
+                  trailing: IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.delete,
+                    ),
+                  ),
                 );
               }),
         ),
