@@ -26,7 +26,7 @@ class TodoView extends StatelessWidget {
           child: BlocBuilder<TodoBloc, TodoState>(
             builder: (context, state) {
               return ListView.builder(
-                  itemCount: 10,
+                  itemCount: state.todoList.length,
                   itemBuilder: (context, index) {
                     if (state.todoList.isEmpty) {
                       return Center(
