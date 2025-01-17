@@ -35,13 +35,19 @@ class TodoView extends StatelessWidget {
                     } else if (state.todoList.isNotEmpty) {
                       return ListTile(
                         leading: Text(
-                          index.toString(),
+                          state.todoList[index],
                           style: TextStyle(
                             fontSize: 16,
                           ),
                         ),
                         trailing: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.read<TodoBloc>().add(
+                                  RemoveEvent(
+                                    task: state.todoList[index],
+                                  ),
+                                );
+                          },
                           icon: Icon(
                             Icons.delete,
                           ),
