@@ -1,4 +1,5 @@
 import 'package:block_statemanagement/Bloc/todo/todo_bloc.dart';
+import 'package:block_statemanagement/Bloc/todo/todo_event.dart';
 import 'package:block_statemanagement/Bloc/todo/todo_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +11,11 @@ class TodoView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          for (int i = 0; i < 10; i++) {
+            context.read<TodoBloc>().add(AddEvent(task: "task:$i"));
+          }
+        },
         child: Icon(
           Icons.add,
         ),
